@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: venue-service
+  namespace: microservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: venue-service
+  template:
+    metadata:
+      labels:
+        app: venue-service
+    spec:
+      containers:
+        - name: venue-service
+          image: kennyadg/venue-service:latest
+          ports:
+            - containerPort: 3002
+          env:
+            - name: DATABASE_URL
+              value: "postgres://admin:admin@10.241.222.216:30432/ticketapp"
+            - name: JWT_SECRET
+              value: "supersecret"
+            - name: PORT
+              value: "3002"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
