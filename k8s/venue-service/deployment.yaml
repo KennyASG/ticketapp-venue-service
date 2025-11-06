@@ -25,6 +25,10 @@ spec:
               value: "supersecret"
             - name: PORT
               value: "3002"
+            - name: REDIS_HOST
+              value: "10.241.222.216"
+            - name: REDIS_PORT
+              value: "6379"
           resources:
             requests:
               cpu: 100m
